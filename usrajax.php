@@ -55,12 +55,12 @@ function signup(){
         $details= $username." successfully created an account";
         $obj->generatereport($details);
         echo '{"result":1,"message":" User account successfully  created"}';
-      /*  $sender="POKAZ";
+        $sender="POKAZ";
         $message= " You succesfully registered for the Pokaz App. Pokaz! Always here to show your way around!";
         $smsmessage = str_replace(' ','%20', $message);
         $ch = curl_init("http://52.89.116.249:13013/cgi-bin/sendsms?username=mobileapp&password=foobar&to=$tel&from=$sender&smsc=smsc&text=$smsmessage");
         curl_exec($ch);
-        */
+        
 
         return;
 
