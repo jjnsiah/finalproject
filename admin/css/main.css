@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+#map {
+    height:100vh;
+}
+#popUpDiv {
+    position:absolute;
+    background-color: #fff;
+    min-width:250px;
+    max-width:300px;
+    /*border:1px solid #000;*/
+    top:20px;
+    /*left:20px;*/
+    z-index: 9002;
+    /*padding: 10px 20px;*/
+    border-radius: 3px;
+    box-shadow: 2px 2px 10px grey;
+}
+.images{
+    width: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin-bottom: 6px;
+}
+.images > img {
+    max-width: 300px;
+    max-height: 200px;
+    display: inline-block;
+    cursor: pointer;
+    object-fit: cover;
+}
+.metadata{
+    padding: 10px 20px;
+}
+.metadata > div{
+    padding: 4px 0;
+}
+#feature-header{
+    text-align: center;
+    margin: 10px;
+}
+
+.description {
+    font-size: 20px;
+    text-align: justify;
+    padding: 6px;
+}
+
+/* Close Button */
+
+.close-thik {
+    color: #777;
+    font: 18px/100% arial, sans-serif;
+    position: absolute;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #fff;
+    right: 8px;
+    top: 8px;
+}
+
+.close-thik:after {
+    content: '✖'; /* UTF-8 symbol */
+}
+
+.container{
+    max-width:1200px ;
+    margin: 0 auto;
+    padding: 20px 10px;
+}
+.sidebar{
+    background-color: #f4f4f4;
+    border-radius: 3px;
+}
+
+table { table-layout: fixed; }
+table th, table td { overflow: hidden; }
+
+
+
+.login-div {
+    padding: 10px 30px;
+    margin: 0 auto;
+    max-width: 300px;
+    border-radius: 4px;
+    background-color: #fcfcfc;
+    border: 1px #efefef solid;
+    box-shadow: 0 0 8px #efefef;
+}
