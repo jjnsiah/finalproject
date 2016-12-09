@@ -147,11 +147,8 @@
           $('#Date').val("");
             $('#message').val("");
           $('#tel').val("")
-          /*var ajaxPageUrl="http://52.89.116.249/~joseph.nsiah/finalproject/usrajax.php?cmd=3&username="+sessionStorage.username+"&number="+sessionStorage.phone;
-          $.ajax(ajaxPageUrl,
-            {async:true,complete:smsComplete	}
-          );
-*/
+          window.open("http://52.89.116.249:13013/cgi-bin/sendsms?username=mobileapp&password=foobar&to="+sessionStorage.phone+"&from=POKAZ&smsc=smsc&text=Your%20appointment%20is%20up%20being%20processed!%20Pokaz's%20got%20you");
+          window.location.href("dashboard.html");
       }
 
 
