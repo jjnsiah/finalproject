@@ -77,15 +77,9 @@
              <div>
              <a href= "" class="waves-effect waves-light btn">Refresh</a>
              <div>
-             <div>
-               <a href= "Directory.html" class="waves-effect waves-light btn">Directory</a>
-             </div>
                <div>
                <a href= "appointment.html" class="waves-effect waves-light btn">Add Appointment</a>
              </div>
-             <div>
-             <a  href= "contacts.html" class="waves-effect waves-light btn">Access Contacts</a>
-             <div>
             <div  style="position:relative;" id='dd'>
             <a class='dropdown-button btn' data-activates='select'>Select to search</a>  <!-- Dropdown Structure -->
               <ul id='select' class='dropdown-content'>
@@ -339,7 +333,9 @@
                           if (status === google.maps.places.PlacesServiceStatus.OK) {
                             for (var i = 0; i < results.length; i++) {
                               createMarker(results[i]);
+
                             }
+                            localStorage.setItem("directory", JSON.stringify(results));
                           }
                         }
 
