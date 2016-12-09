@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>appointment</title>
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+  <!-- Path to your custom app styles-->
+  <link rel="stylesheet"  href="css_/jquery.mobile.structure.css" />
+  <link rel="stylesheet" href="css_/jquery.mobile.theme.css" />
+  <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="materialize.css"  media="screen,projection"/>
+  <style>
+  @font-face{
+    font-family: deutsch;
+    src:url(London-Tube.ttf);
+  }
+  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:   white!important;
+    opacity: 0.7;
+    font-family: deutsch!important;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    white!important;
+    opacity:  0.7;
+    font-family: deutsch!important;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    white!important;
+    opacity:  0.7;
+    font-family: deutsch!important;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:  white!important;
+    opacity: 0.7;
+    font-family: deutsch!important;
+  }
+  input{
+    border-bottom-color: white!important;
+    color: white !important;
+    /*	border-bottom: 820px!important;*/
+
+  }
+
+  .but1{
+    border-radius: 30px!important;
+    width: 50%!important;
+    background-color: #c62828 !important;
+    padding: 8px;
+    border: 	none;
+    font-family: deutsch!important;
+
+  }
+  #divStatus{
+    text-align: center;
+
+    color:white;
+    font-size:15px;
+    font-family:deutsch;
+  }
+  </style>
+
+  <script>
+  var userAgent = navigator.userAgent + '';
+  if (userAgent.indexOf('iPhone') > -1) {
+    document.write('<script src="scripts/cordova-iphone.js"></sc' + 'ript>');
+    var mobile_system = 'iphone';
+  } else if (userAgent.indexOf('Android') > -1) {
+    document.write('<script src="scripts/cordova-android.js"></sc' + 'ript>');
+    var mobile_system = 'android';
+  } else {
+    var mobile_system = '';
+  }
+  </script>
+
+
+
+
+
+</head>
+<body >
+  <nav>
+    <div style="background-color:#37474f!important"class="nav-wrapper">
+
+      <h4 style=" font-family: deutsch!important; font-size: 20px!important;" class="brand-logo">APPOINTMENT</h4>
+
+      <a href="dashboard.html">
+        <img src="back_icon.png"/>
+      </a>
+
+    </div>
+  </nav>
+  <br>   <br>
+  <div id="divStatus">
+    .
+  </div>
+  <div style="text-align :-webkit-center!important;">
+    <div  style="width:80%!important;background-color:dimgrey!important"class="jumbotron">
+      <input id="name" style="color:white!important;width:80%;" placeholder="Name"/>
+      <input id="institution" style="color:!important;width:80%;" placeholder="Institution Name"/>
+      <input id="message" style="color:!important;width:80%;"  placeholder="Message"/>
+      <input  onchange="checkMobile()" id="tel" style="width:80%;" placeholder="Tel (Use country code)"/>
+    <input  id="Date"  type="date"style="width:80%;" placeholder="Date"/>
+          <select style="background-color:dimgrey!important; color:white!important"name="type" id="feature_type" class="form-control">
+              <option value=""> Click to Choose Feature</option>
+              <option value="atm">ATM</option>
+              <option value="restaurant">Restaurant</option>
+              <option value="hospital">hospital</option>
+              <option value="school">School</option>
+
+          </select>
+
+      <br>   <br>
+      <button class="btn waves-effect waves-light" style="background-color:white!important; color:dimgrey; border-radius:10px; font-family: deutsch!important; "
+      type="submit" onclick="set()" > <b>Set up</b></button>
+    </div>
+    </div>
+    <script>
+    function setComplete(xhr,status){
+      if(status!="success"){
+          $('#divStatus').attr('style','color:#ef5350');
+        $('#divStatus').html("error while creating an account");
+
+        return;
+      }
+
+      var obj=$.parseJSON(xhr.responseText);
+
+
+      if(obj.result==0){
+
+
+        $('#divStatus').attr('style','color:#ef5350');
+        $('#divStatus').html(obj.message);
+        $('#name').val("");
+        $('#institution').val("");
+        $('#Date').val("");
+          $('#message').val("");
+        $('#tel').val("")
+      }
+      else{
+          $('#divStatus').html(obj.message);
+          $('#divStatus').attr('style','color:#ef5350');
+          $('#name').val("");
+          $('#institution').val("");
+          $('#Date').val("");
+            $('#message').val("");
+          $('#tel').val("")
+          /*var ajaxPageUrl="http://52.89.116.249/~joseph.nsiah/finalproject/usrajax.php?cmd=3&username="+sessionStorage.username+"&number="+sessionStorage.phone;
+          $.ajax(ajaxPageUrl,
+            {async:true,complete:smsComplete	}
+          );
+*/
+      }
+
+
+    }
+    function smsComplete(xhr,status){
+
+    }
+
+
+    function set(){
+      var user=$('#name').val();
+      var message=$('#message').val();
+      var institution=$('#institution').val();
+      var tel=$('#tel').val();
+      var date=$('#Date').val();
+
+      var ajaxPageUrl="http://52.89.116.249/~joseph.nsiah/finalproject/usrajax.php?cmd=4&name="+user+"&institution="+institution+"&message="+message+"&tel="+tel+"&date="+date;
+      $.ajax(ajaxPageUrl,
+        {async:true,complete:setComplete	}
+      );
+    }
+
+
+    </script>
+
+
+
+
+
+    <script>
+    function checkMobile(){
+      var num = $("#tel").val();
+      var reg= /^233[0-9]{9}/;
+      var r= reg.test(num);
+      if (r==false)
+      {
+      alert("Sorry! Number should have country code (233) inplace of the first number(0). eg. 23324908740");
+      $("#tel").val("");
+      }
+    }
+    </script>
+
+
+  <script type="text/javascript" src="js_/jquery-1.12.1.js"></script>
+  <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+  <script type="text/javascript" src="scripts/index.js"></script>
+
+  <script type="text/javascript" src="materialize.js"></script>
+</body>
+</html>

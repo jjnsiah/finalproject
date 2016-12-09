@@ -52,6 +52,16 @@ class user extends adb{
     return $this->query($strQuery);
   }
 
+  function setappointment($name,$institution,$date, $tel,$message){
+    $strQuery="Insert into appointment set name='$name', tel= '$tel' , institution='$institution',message='$message', Date='$date'";
+    return $this->query($strQuery);
+  }
+
+  function getappointment(){
+    $strQuery="Select * from appointment";
+    return $this->query($strQuery);
+  }
+
 }
 
  ?>

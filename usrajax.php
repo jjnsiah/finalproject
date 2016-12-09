@@ -16,10 +16,45 @@ switch($cmd){
   case 3:
   sms();
   break;
+  case 4:
+  addappointment();
+  break;
   default:
   echo "wrong cmd";	//change to json message
   break;
 }
+
+function addappointment(){
+  include_once("user.php");
+  $obj=new user();
+  //$name="+user+"&institution="+institution+"&message="+message+"&tel="+tel+"&date="+date;
+  //check if there is a user code
+  if (empty($_REQUEST['name'])||empty($_REQUEST['institution']) || empty($_REQUEST['message']) || empty($_REQUEST['tel']) ||empty($_REQUEST['date'])){
+        echo'{"result":0,"message":"Please provide all appointment details"}';
+    return;
+  }
+  else{
+
+      $name	=$_REQUEST["name"];
+      $insti= $_REQUEST["institution"];
+      $msg=$_REQUEST["message"];
+      $tel=$_REQUEST["tel"];
+      $date=$_REQUEST["date"];
+
+      $row=$obj->setappointment($name,$insti,$date, $tel,$msg);
+      if($row==0){
+        echo '{"result":0,"message":"Error! Appointment creation error"}';
+        return;
+      }
+      else{
+        $details= $name." set an appointment";
+        $obj->generatereport($details);
+        echo '{"result":1,"message":" Appointment successfully  created"}';
+        return;
+
+      }
+    }
+  }
 
 
 function sms(){
