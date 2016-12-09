@@ -58,14 +58,24 @@ function addappointment(){
 
 
 function sms(){
-  $username	=$_REQUEST["username"];
-  $phone=$_REQUEST["number"];
-  $sender="POKAZ";
-  $message= "Nana. You succesfully registered for the Pokaz App. Pokaz! Always here to show your way around!";
-  $smsmessage = str_replace(' ','%20', $message);
-  $ch = curl_init("http://52.89.116.249:13013/cgi-bin/sendsms?username=mobileapp&password=foobar&to=$phone&from=$sender&smsc=smsc&text=$smsmessage");
-  curl_exec($ch);
-  echo"";
+  //$username	=$_REQUEST["username"];
+  $tel=$_REQUEST["number"];
+  echo '{"result":1,"message":" You joined pokaz "}';
+    $sender="POKAZ";
+
+    $message="You succesfully joined pokaz";
+    $smsmessage = str_replace(' ','%20', $message);
+    $ch = curl_init("http://52.89.116.249:13013/cgi-bin/sendsms?username=mobileapp&password=foobar&to=$tel&from=$sender&smsc=smsc&text=$smsmessage");
+    curl_exec($ch);
+  /*$ch = curl_init();
+  curl_setopt($ch,CURLOPT_URL,$url);
+  curl_setopt($ch,CURLOPT_RETURNTRANSFER,false);
+  $response=curl_exec($ch);
+  curl_close($ch);
+  */
+
+
+
 
 }
 

@@ -112,6 +112,7 @@
     </div>
     </div>
     <script>
+    var tel;
     function SignUpComplete(xhr,status){
       if(status!="success"){
           $('#divStatus').attr('style','color:#ef5350');
@@ -148,16 +149,11 @@
           $('#cpassword').val("");
           $('#email').val("");
           $('#organisation').val("");
-          var ajaxPageUrl="http://52.89.116.249/~joseph.nsiah/finalproject/usrajax.php?cmd=3&username="+sessionStorage.username+"&number="+sessionStorage.phone;
-          $.ajax(ajaxPageUrl,
-            {async:true,complete:smsComplete	}
-          );
+
+          window.open("http://52.89.116.249:13013/cgi-bin/sendsms?username=mobileapp&password=foobar&to="+sessionStorage.phone+"&from=POKAZ&smsc=smsc&text=WELCOME");
 
       }
 
-
-    }
-    function smsComplete(xhr,status){
 
     }
 
@@ -166,7 +162,7 @@
       var user=$('#username').val();
       var fname=$('#fname').val();
       var lname=$('#lname').val();
-      var tel=$('#tel').val();
+       tel=$('#tel').val();
       var password=$('#password').val();
       var cpass= $('#cpassword').val();
       sessionStorage.phone=tel;
@@ -179,6 +175,7 @@
     }
     else {
       var obj2="Please make sure confirm password and password fields match";
+      $('#divStatus').attr('style','color:#ef5350');
       $('#divStatus').html(obj2);
       //alert("Make sure password matches");
     }
