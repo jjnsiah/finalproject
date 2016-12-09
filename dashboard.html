@@ -84,8 +84,8 @@
                 <li><a onclick="initMap('restaurant')">Restaurant</a></li>
                   <li><a onclick="initMap('school')" >Schools</a></li>
                 <li><a onclick="initMap('hospital')" >Hospital</a></li>
-                <li><a onclick="initMap('hotels')" ></a>Hotel</li>
-                <li><a onclick="initMap('stores')" >Stores</a></li>
+
+
               </ul>
             </div>
 
@@ -189,9 +189,6 @@
 
                   downloadUrl('http://52.89.116.249/~joseph.nsiah/finalproject/markers.php', function(data) {
                             var data = JSON.parse(data.responseText);
-                            if (data!=null){
-
-
                               for (var i = 0; i < data.length; i++) {
                                   console.log(data[i]);
                                var name = data[i].name;
@@ -231,7 +228,7 @@
                                  infoWindow.open(map, marker);
                                });
                             }
-                          }
+
                           });
 
 
@@ -302,7 +299,7 @@
                           }
 
 
-}i
+}
 
 
 

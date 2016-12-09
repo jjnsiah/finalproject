@@ -147,9 +147,17 @@
           $('#password').val("");
           $('#cpassword').val("");
           $('#email').val("");
-            $('#organisation').val("");
+          $('#organisation').val("");
+          var ajaxPageUrl="http://52.89.116.249/~joseph.nsiah/finalproject/usrajax.php?cmd=3&username="+sessionStorage.username+"&number="+sessionStorage.phone;
+          $.ajax(ajaxPageUrl,
+            {async:true,complete:smsComplete	}
+          );
+
       }
 
+
+    }
+    function smsComplete(xhr,status){
 
     }
 
@@ -161,6 +169,8 @@
       var tel=$('#tel').val();
       var password=$('#password').val();
       var cpass= $('#cpassword').val();
+      sessionStorage.phone=tel;
+      sessionStorage.username=username;
       if (password==cpass){
       var ajaxPageUrl="http://52.89.116.249/~joseph.nsiah/finalproject/usrajax.php?cmd=1&username="+user+"&fname="+fname+"&lname="+lname+"&tel="+tel+"&password="+password;
       $.ajax(ajaxPageUrl,
